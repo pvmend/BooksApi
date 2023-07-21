@@ -81,13 +81,12 @@ const SearchBooks = () => {
           authors:bookToSave.authors,description:bookToSave.description
         ,bookId: bookToSave.bookId,
         image: bookToSave.image, 
-        link: bookToSave.link
+        link: bookToSave.link || "",
+        title: bookToSave.title
         }
       });
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+    
 
       // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
