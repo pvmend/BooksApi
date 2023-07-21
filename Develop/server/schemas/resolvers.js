@@ -24,7 +24,7 @@ const resolvers = {
     },
 
     login: async (parent, { email, password }) => {
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ email });
         if(!user){
             throw new AuthenticationError('No user found');
         }
@@ -36,7 +36,16 @@ const resolvers = {
         const token = signToken(user);
         return { token , user }
     },
-    saveBook: async (parent, { book }, context) => {
+    saveBook: async (parent, { authors,description,bookId,image,link,title }, context) => {
+        const book = {
+            authors,
+            description,
+            bookId,
+            image,
+            link,
+            title
+
+        };
         if(context.user){
       return User.findOneAndUpdate(
         { _id: context.user._id },

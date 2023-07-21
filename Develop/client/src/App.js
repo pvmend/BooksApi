@@ -1,5 +1,5 @@
 import React from 'react';
-import { ApolloCilent,
+import { ApolloClient,
         ApolloProvider,
         InMemoryCache,
         createHttpLink
@@ -25,11 +25,11 @@ const authLink = setContext((_, { headers })=> {
   };
 });
 
-const client = new ApolloCilent({
+const client = new ApolloClient({
   link : authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
-
+// 
 function App() {
   return (
     <ApolloProvider client = {client}>
